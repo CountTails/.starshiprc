@@ -1,0 +1,95 @@
+# ~/.config/starship.toml
+#
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Wait up to 100 milliseconds for starship to check files under the current directory.
+scan_timeout = 100
+
+# Custom format
+format = '''
+\[ : $os|$shell|$sudo $username$hostname\]
+\[ : $directory $git_branch|$git_status|$git_metrics\]
+\[ : $status$cmd_duration\] $character
+'''
+
+[os]
+format = '[$symbol]($style)'
+style = "bold green"
+disabled = false
+
+[os.symbols]
+Macos = ''
+Linux = ''
+Windows = ''
+Unknown = '�'
+
+[shell]
+unknown_indicator = "�"
+format = "[$indicator]($style)"
+style = "bold yellow"
+disabled = false
+
+[sudo]
+style = "bold red"
+symbol = ' '
+format = "[$symbol]($style)"
+disabled = false
+
+[username]
+style_root = "italic red"
+style_user = "italic green"
+show_always = true
+format = "[$user]($style)"
+disabled = false
+
+[hostname]
+ssh_only = false
+ssh_symbol = ' '
+trim_at = ''
+style = 'italic blue'
+format = '[@$hostname($ssh_symbol)]($style)'
+disabled = false
+
+[directory]
+style = "bold purple"
+read_only_style = "italic purple"
+truncation_symbol = ".../"
+format = "[$path]($style)"
+
+[git_branch]
+format = '[$symbol$branch]($style)'
+style = "bold yellow"
+disabled = false
+
+[git_status]
+format = "[$all_status]($style)"
+style = "italic blue"
+disabled = false
+
+[git_metrics]
+disabled = false
+only_nonzero_diffs = false
+ignore_submodules = false
+
+[status]
+success_style = "italic blue"
+failure_style = "bold orange"
+symbol = ' '
+success_symbol = ' '
+not_executable_symbol = ' '
+not_found_symbol = ' '
+signal_symbol = ' '
+format = '[$symbol$common_meaning$signal_name$maybe_int]($style) '
+map_symbol = true
+disabled = false
+
+[cmd_duration]
+style = "italic yellow"
+format = "[ $duration]($style)"
+min_time = 100
+show_milliseconds = true
+disabled = false
